@@ -29,7 +29,6 @@ export default function DashboardMockup() {
             {/* Logo */}
             <div className="flex items-center gap-2 px-4 pb-3 border-b border-white/5 mb-2">
               <div className="w-6 h-6 bg-forest-600 rounded-lg flex items-center justify-center">
-                <span className="text-white text-xs">🖨️</span>
               </div>
               <span className="text-white text-xs font-bold font-display">PressQuote</span>
             </div>
@@ -82,9 +81,9 @@ export default function DashboardMockup() {
                 <span className="text-white/60 text-[10px] font-sans font-semibold uppercase tracking-wider">Recent Quotes</span>
               </div>
               {[
-                { num: 'PQ-2025-0018', customer: 'Acme Corp', price: '$1,248', status: 'sent', margin: '43.2%' },
-                { num: 'PQ-2025-0017', customer: 'Startup HQ', price: '$386', status: 'accepted', margin: '38.7%' },
-                { num: 'PQ-2025-0016', customer: 'RetailCo', price: '$2,910', status: 'draft', margin: '45.1%' },
+                { num: 'PQ-2025-0018', customer: 'Valley Baptist Church', price: '$1,248', status: 'sent', margin: '43.2%' },
+                { num: 'PQ-2025-0017', customer: "Johnson's Print Supply", price: '$386', status: 'accepted', margin: '38.7%' },
+                { num: 'PQ-2025-0016', customer: 'Riverside Elementary', price: '$2,910', status: 'draft', margin: '45.1%' },
               ].map(({ num, customer, price, status, margin }) => (
                 <div key={num} className="flex items-center justify-between px-3 py-2 border-b border-white/5 last:border-0">
                   <span className="text-forest-400 text-[9px] font-mono">{num}</span>

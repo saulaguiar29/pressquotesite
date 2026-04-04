@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 export default function WaitlistForm({ dark = false }) {
   const [email, setEmail] = useState('')
+  const [businessName, setBusinessName] = useState('')
   const [status, setStatus] = useState('idle') // idle | loading | success | error
 
   const handleSubmit = async (e) => {
@@ -13,12 +14,13 @@ export default function WaitlistForm({ dark = false }) {
     // TODO: Replace with your actual email capture endpoint
     // Options: Mailchimp, ConvertKit, Resend, or a simple /api/waitlist route
     // Example with a Next.js API route:
-    // await fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email }) })
+    // await fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email, businessName }) })
 
     // Simulated success for now
     await new Promise((r) => setTimeout(r, 800))
     setStatus('success')
     setEmail('')
+    setBusinessName('')
   }
 
   if (status === 'success') {
@@ -37,23 +39,36 @@ export default function WaitlistForm({ dark = false }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your work email"
-        required
-        className={`flex-1 px-4 py-3 rounded-xl border font-sans text-sm focus:outline-none focus:ring-2 focus:ring-forest-500/40 transition-all ${
-          dark
-            ? 'bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:bg-white/15'
-            : 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-400'
-        }`}
-      />
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-md">
+      <div className="flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          value={businessName}
+          onChange={(e) => setBusinessName(e.target.value)}
+          placeholder="Business name"
+          className={`flex-1 px-4 py-3 rounded-xl border font-sans text-sm focus:outline-none focus:ring-2 focus:ring-forest-500/40 transition-all ${
+            dark
+              ? 'bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:bg-white/15'
+              : 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-400'
+          }`}
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Work email"
+          required
+          className={`flex-1 px-4 py-3 rounded-xl border font-sans text-sm focus:outline-none focus:ring-2 focus:ring-forest-500/40 transition-all ${
+            dark
+              ? 'bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:bg-white/15'
+              : 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-400'
+          }`}
+        />
+      </div>
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="btn-primary whitespace-nowrap"
+        className="btn-primary whitespace-nowrap w-full justify-center"
       >
         {status === 'loading' ? (
           <>
