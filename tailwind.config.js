@@ -22,8 +22,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['Playfair Display', 'Georgia', 'serif'],
-        sans: ['DM Sans', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {

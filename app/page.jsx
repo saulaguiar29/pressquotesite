@@ -8,7 +8,6 @@ import DashboardMockup from '@/components/DashboardMockup'
 const NAV_LINKS = [
   { label: 'Features', href: '#features' },
   { label: 'How it Works', href: '#how-it-works' },
-  { label: 'Pricing', href: '#pricing' },
 ]
 
 const FEATURES = [
@@ -53,66 +52,21 @@ const FEATURES = [
 const STEPS = [
   {
     number: '01',
-    title: 'Choose a product or build custom',
+    title: 'Connect your QuickBooks account in one click',
     description:
-      'Pick from pre-configured product templates (cards, flyers, banners, booklets) or use the line-item builder for complex jobs with any combination of materials, labor, and outsourced work.',
+      'Link your existing QuickBooks account and PressQuote pulls in your real numbers — materials, labor, overhead, and vendor costs. No manual entry.',
   },
   {
     number: '02',
-    title: 'The pricing engine handles the math',
+    title: 'Build your quote — pick your product, quantity, and due date',
     description:
-      'Your labor rates, overhead percentage, target margin, economic multiplier, and rush fees are applied automatically — every time, consistently, based on real numbers not gut feelings.',
+      'All of your real costs run in the background automatically. Rush fees, overhead, and margin targets are applied every time — no spreadsheets, no guessing.',
   },
   {
     number: '03',
-    title: 'Review, email, and track',
+    title: 'See your full margin breakdown before you hit send',
     description:
-      "See the full profit breakdown before sending. Generate a professional email draft. Track quote status from draft to accepted — and export to QuickBooks when it's time to invoice.",
-  },
-]
-
-const PRICING = [
-  {
-    name: 'Starter',
-    description: 'Perfect for solo print shops getting started with better quoting.',
-    features: [
-      '1 user account',
-      'Unlimited quotes',
-      'Quick Quote + Custom Job',
-      'Materials database',
-      'QuickBooks sync',
-      'Email support',
-    ],
-    cta: 'Join Waitlist',
-    highlighted: false,
-  },
-  {
-    name: 'Professional',
-    description: 'For growing print shops with a team that needs to move fast.',
-    features: [
-      'Up to 5 user accounts',
-      'Everything in Starter',
-      'Admin + staff roles',
-      'Quote analytics dashboard',
-      'Priority email support',
-      'Onboarding call included',
-    ],
-    cta: 'Join Waitlist',
-    highlighted: true,
-  },
-  {
-    name: 'Shop',
-    description: 'For multi-location print businesses with complex needs.',
-    features: [
-      'Unlimited users',
-      'Everything in Professional',
-      'Custom integrations',
-      'Dedicated account manager',
-      'SLA guarantee',
-      'Volume pricing',
-    ],
-    cta: 'Join Waitlist',
-    highlighted: false,
+      "Know exactly what you make on every job before the quote ever goes out. No surprises after the fact.",
   },
 ]
 
@@ -136,7 +90,6 @@ export default function HomePage() {
       <Features />
       <HowItWorks />
       <RushPricingCallout />
-      <Pricing />
       <CTASection />
       <Footer />
     </div>
@@ -174,7 +127,7 @@ function Navbar() {
 
         {/* CTA */}
         <a href="#waitlist" className="btn-primary text-sm px-5 py-2.5">
-          Get Early Access
+          Join the Waitlist
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
@@ -211,27 +164,27 @@ function Hero() {
 
         {/* Headline */}
         <h1 className="font-display text-center text-white text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight mb-6">
-          Stop guessing.
+          You don't know if
           <br />
-          <span className="text-gradient">Start quoting.</span>
+          <span className="text-gradient">a job is profitable</span>
+          <br />
+          until it's too late.
         </h1>
 
         {/* Subheadline */}
         <p className="text-center text-white/60 text-lg sm:text-xl font-sans max-w-2xl mx-auto mb-10 leading-relaxed">
-          PressQuote calculates accurate, profitable print quotes in seconds — with built-in rush
-          pricing, overhead, margin control, and QuickBooks sync.
+          Most print shops price on gut feeling, old spreadsheets, or whatever they charged last time.
+          By the time the margin is gone, the job is already running.
+          PressQuote connects to your QuickBooks and shows you the actual profit on every job — before the quote ever goes out.
         </p>
 
-        {/* CTAs */}
+        {/* CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
           <a href="#waitlist" className="btn-primary text-base px-8 py-4">
-            Get Early Access — It's Free
+            Join the Waitlist — It's Free
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
-          <a href="#how-it-works" className="btn-secondary text-base px-8 py-4">
-            See how it works
           </a>
         </div>
 
@@ -402,115 +355,6 @@ function RushPricingCallout() {
   )
 }
 
-// ─── PRICING ─────────────────────────────────────────────────────────────────
-
-function Pricing() {
-  return (
-    <section id="pricing" className="py-24 bg-stone-50">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="section-label mb-4">
-            <span className="w-6 h-px bg-forest-500 inline-block" />
-            Pricing
-            <span className="w-6 h-px bg-forest-500 inline-block" />
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Plans for every shop
-          </h2>
-          <p className="text-gray-500 font-sans text-lg">
-            Pricing is still being finalized — join the waitlist to lock in early-adopter rates.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          {PRICING.map(({ name, description, features, cta, highlighted }) => (
-            <div
-              key={name}
-              className={`relative rounded-lg p-8 flex flex-col ${
-                highlighted
-                  ? 'bg-forest-600 text-white shadow-2xl shadow-forest-600/30 scale-[1.02]'
-                  : 'bg-white border border-stone-200'
-              }`}
-            >
-              {highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="bg-white text-forest-600 text-xs font-bold font-sans px-4 py-1.5 rounded-full shadow-md">
-                    Most Popular
-                  </span>
-                </div>
-              )}
-
-              <div className="mb-6">
-                <h3
-                  className={`font-display font-bold text-xl mb-3 ${
-                    highlighted ? 'text-white' : 'text-gray-900'
-                  }`}
-                >
-                  {name}
-                </h3>
-                <div className="mb-3">
-                  <span
-                    className={`inline-block text-xs font-sans font-semibold uppercase tracking-wider px-2.5 py-1 rounded ${
-                      highlighted ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500'
-                    }`}
-                  >
-                    Pricing coming soon
-                  </span>
-                </div>
-                <p
-                  className={`text-sm font-sans ${highlighted ? 'text-white/70' : 'text-gray-500'}`}
-                >
-                  {description}
-                </p>
-              </div>
-
-              <ul className="space-y-3 mb-8 flex-1">
-                {features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5">
-                    <svg
-                      className={`w-4 h-4 mt-0.5 shrink-0 ${
-                        highlighted ? 'text-white' : 'text-forest-500'
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2.5}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span
-                      className={`text-sm font-sans ${
-                        highlighted ? 'text-white/90' : 'text-gray-600'
-                      }`}
-                    >
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="#waitlist"
-                className={`text-center font-sans font-semibold px-6 py-3 rounded-lg transition-all duration-200 text-sm ${
-                  highlighted
-                    ? 'bg-white text-forest-700 hover:bg-forest-50 shadow-lg'
-                    : 'bg-forest-600 text-white hover:bg-forest-700 shadow-lg shadow-forest-600/20'
-                }`}
-              >
-                {cta}
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ─── CTA SECTION ─────────────────────────────────────────────────────────────
 
 function CTASection() {
@@ -521,17 +365,16 @@ function CTASection() {
       <div className="relative max-w-3xl mx-auto px-6 text-center">
         <p className="section-label text-forest-400 mb-6 justify-center">
           <span className="w-6 h-px bg-forest-600 inline-block" />
-          Get Early Access
+          Join the Waitlist
           <span className="w-6 h-px bg-forest-600 inline-block" />
         </p>
         <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-5">
-          Ready to quote faster
+          Know your margin
           <br />
-          and profit more?
+          before you hit send.
         </h2>
         <p className="text-white/50 font-sans text-lg mb-10 max-w-xl mx-auto">
-          Join print shops on the early access list. Be first to get access and lock in
-          early-adopter pricing.
+          Join the waitlist and be first to get access when PressQuote launches.
         </p>
 
         <div className="flex justify-center">
@@ -568,11 +411,6 @@ function Footer() {
             {[
               { label: 'Features', href: '#features' },
               { label: 'How it Works', href: '#how-it-works' },
-              { label: 'Pricing', href: '#pricing' },
-              // Add real links here as you build them:
-              // { label: 'Privacy', href: '/privacy' },
-              // { label: 'Terms', href: '/terms' },
-              // { label: 'Contact', href: '/contact' },
             ].map(({ label, href }) => (
               <a
                 key={label}
