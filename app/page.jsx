@@ -13,37 +13,37 @@ const NAV_LINKS = [
 
 const FEATURES = [
   {
-    emoji: '⚡',
+    iconPath: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
     title: 'Quick Quote Wizard',
     description:
       'Generate quotes in 4 steps for business cards, flyers, posters, banners, and booklets. No guesswork, no back-and-forth.',
   },
   {
-    emoji: '🔧',
+    iconPath: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4',
     title: 'Custom Job Builder',
     description:
       'Full line-item control for complex work. Break down materials, labor, design, outsourced costs, and equipment per job.',
   },
   {
-    emoji: '🚀',
+    iconPath: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
     title: 'Automatic Rush Pricing',
     description:
       'Rush fees applied automatically based on due date — 10% at 7 days, 25% at 3 days, 50% at 2 days. Always enforced, never forgotten.',
   },
   {
-    emoji: '📊',
+    iconPath: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
     title: 'QuickBooks Sync',
     description:
       'Export accepted quotes directly to QuickBooks Online as invoices. Sync your customer list with a single click.',
   },
   {
-    emoji: '📦',
+    iconPath: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8l1 12a2 2 0 002 2h8a2 2 0 002-2L19 8M10 12v4M14 12v4',
     title: 'Materials Database',
     description:
       'Track inventory levels, unit costs, reorder points, and supplier info. Get low-stock alerts before you run out mid-job.',
   },
   {
-    emoji: '👥',
+    iconPath: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z',
     title: 'Admin & Staff Roles',
     description:
       'Admins control pricing settings and margins. Staff create and manage quotes. Each team member gets their own secure login.',
@@ -74,8 +74,6 @@ const STEPS = [
 const PRICING = [
   {
     name: 'Starter',
-    price: '$49',
-    period: '/month',
     description: 'Perfect for solo print shops getting started with better quoting.',
     features: [
       '1 user account',
@@ -85,13 +83,11 @@ const PRICING = [
       'QuickBooks sync',
       'Email support',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Join Waitlist',
     highlighted: false,
   },
   {
     name: 'Professional',
-    price: '$99',
-    period: '/month',
     description: 'For growing print shops with a team that needs to move fast.',
     features: [
       'Up to 5 user accounts',
@@ -101,13 +97,11 @@ const PRICING = [
       'Priority email support',
       'Onboarding call included',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Join Waitlist',
     highlighted: true,
   },
   {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: '',
+    name: 'Shop',
     description: 'For multi-location print businesses with complex needs.',
     features: [
       'Unlimited users',
@@ -117,7 +111,7 @@ const PRICING = [
       'SLA guarantee',
       'Volume pricing',
     ],
-    cta: 'Contact Sales',
+    cta: 'Join Waitlist',
     highlighted: false,
   },
 ]
@@ -157,8 +151,10 @@ function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-forest-600 rounded-lg flex items-center justify-center shadow-lg shadow-forest-600/30">
-            <span className="text-base">🖨️</span>
+          <div className="w-8 h-8 bg-forest-600 rounded flex items-center justify-center shadow-lg shadow-forest-600/30">
+            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
+            </svg>
           </div>
           <span className="font-display font-bold text-white text-lg">PressQuote</span>
         </a>
@@ -197,10 +193,10 @@ function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(22,163,74,0.12)_0%,_transparent_65%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(22,163,74,0.06)_0%,_transparent_65%)]" />
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
-            'repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, #fff 0px, #fff 1px, transparent 1px, transparent 60px)',
+            'repeating-linear-gradient(45deg, #fff 0px, #fff 1px, transparent 1px, transparent 18px)',
         }}
       />
 
@@ -263,8 +259,8 @@ function TrustBar() {
             { value: '100%', label: 'Rush fees automatic' },
           ].map(({ value, label }) => (
             <div key={label}>
-              <div className="font-display font-bold text-3xl text-gray-900 mb-1">{value}</div>
-              <div className="text-gray-500 text-sm font-sans">{label}</div>
+              <div className="font-display font-bold text-4xl text-gray-900 mb-1 leading-none">{value}</div>
+              <div className="text-gray-500 text-sm font-sans mt-2">{label}</div>
             </div>
           ))}
         </div>
@@ -277,7 +273,7 @@ function TrustBar() {
 
 function Features() {
   return (
-    <section id="features" className="py-24 bg-gray-50">
+    <section id="features" className="py-24 bg-stone-50">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <p className="section-label mb-4">
@@ -297,13 +293,15 @@ function Features() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURES.map(({ emoji, title, description }) => (
+          {FEATURES.map(({ iconPath, title, description }) => (
             <div
               key={title}
-              className="bg-white border border-gray-100 rounded-2xl p-7 hover:border-forest-200 hover:shadow-lg hover:shadow-forest-600/5 transition-all duration-300 group"
+              className="bg-white border border-stone-200 rounded-lg p-7 hover:border-forest-200 hover:shadow-lg hover:shadow-forest-600/5 transition-all duration-300 group"
             >
-              <div className="w-12 h-12 bg-forest-50 border border-forest-100 rounded-xl flex items-center justify-center mb-5 group-hover:bg-forest-100 transition-colors text-2xl">
-                {emoji}
+              <div className="w-12 h-12 bg-forest-50 border border-forest-100 rounded-lg flex items-center justify-center mb-5 group-hover:bg-forest-100 transition-colors text-forest-700">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d={iconPath} />
+                </svg>
               </div>
               <h3 className="font-display font-bold text-gray-900 text-lg mb-3">{title}</h3>
               <p className="text-gray-500 font-sans text-sm leading-relaxed">{description}</p>
@@ -344,7 +342,7 @@ function HowItWorks() {
 
               {/* Number */}
               <div className="shrink-0">
-                <div className="w-12 h-12 rounded-2xl bg-forest-600 text-white font-display font-bold text-lg flex items-center justify-center shadow-lg shadow-forest-600/30">
+                <div className="w-12 h-12 rounded-lg bg-forest-600 text-white font-display font-bold text-lg flex items-center justify-center shadow-lg shadow-forest-600/30">
                   {number}
                 </div>
               </div>
@@ -385,7 +383,7 @@ function RushPricingCallout() {
             </p>
           </div>
 
-          <div className="w-full md:w-auto md:min-w-[260px] bg-white/5 border border-white/10 rounded-2xl p-6">
+          <div className="w-full md:w-auto md:min-w-[260px] bg-white/5 border border-white/10 rounded-lg p-6">
             <div className="space-y-3">
               {RUSH_RULES.map(({ days, fee, color }) => (
                 <div
@@ -408,7 +406,7 @@ function RushPricingCallout() {
 
 function Pricing() {
   return (
-    <section id="pricing" className="py-24 bg-gray-50">
+    <section id="pricing" className="py-24 bg-stone-50">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <p className="section-label mb-4">
@@ -417,21 +415,21 @@ function Pricing() {
             <span className="w-6 h-px bg-forest-500 inline-block" />
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Simple, transparent pricing
+            Plans for every shop
           </h2>
           <p className="text-gray-500 font-sans text-lg">
-            Start with a 14-day free trial. No credit card required.
+            Pricing is still being finalized — join the waitlist to lock in early-adopter rates.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          {PRICING.map(({ name, price, period, description, features, cta, highlighted }) => (
+          {PRICING.map(({ name, description, features, cta, highlighted }) => (
             <div
               key={name}
-              className={`relative rounded-2xl p-8 flex flex-col ${
+              className={`relative rounded-lg p-8 flex flex-col ${
                 highlighted
                   ? 'bg-forest-600 text-white shadow-2xl shadow-forest-600/30 scale-[1.02]'
-                  : 'bg-white border border-gray-100'
+                  : 'bg-white border border-stone-200'
               }`}
             >
               {highlighted && (
@@ -444,21 +442,20 @@ function Pricing() {
 
               <div className="mb-6">
                 <h3
-                  className={`font-display font-bold text-xl mb-2 ${
+                  className={`font-display font-bold text-xl mb-3 ${
                     highlighted ? 'text-white' : 'text-gray-900'
                   }`}
                 >
                   {name}
                 </h3>
-                <div className="flex items-baseline gap-1 mb-3">
+                <div className="mb-3">
                   <span
-                    className={`font-display font-bold text-4xl ${
-                      highlighted ? 'text-white' : 'text-gray-900'
+                    className={`inline-block text-xs font-sans font-semibold uppercase tracking-wider px-2.5 py-1 rounded ${
+                      highlighted ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500'
                     }`}
                   >
-                    {price}
+                    Pricing coming soon
                   </span>
-                  <span className={highlighted ? 'text-white/70' : 'text-gray-500'}>{period}</span>
                 </div>
                 <p
                   className={`text-sm font-sans ${highlighted ? 'text-white/70' : 'text-gray-500'}`}
@@ -498,7 +495,7 @@ function Pricing() {
 
               <a
                 href="#waitlist"
-                className={`text-center font-sans font-semibold px-6 py-3 rounded-xl transition-all duration-200 text-sm ${
+                className={`text-center font-sans font-semibold px-6 py-3 rounded-lg transition-all duration-200 text-sm ${
                   highlighted
                     ? 'bg-white text-forest-700 hover:bg-forest-50 shadow-lg'
                     : 'bg-forest-600 text-white hover:bg-forest-700 shadow-lg shadow-forest-600/20'
@@ -558,8 +555,10 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 bg-forest-600 rounded-lg flex items-center justify-center">
-              <span className="text-sm">🖨️</span>
+            <div className="w-7 h-7 bg-forest-600 rounded flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
+              </svg>
             </div>
             <span className="font-display font-bold text-white">PressQuote</span>
           </div>
