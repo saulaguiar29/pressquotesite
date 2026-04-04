@@ -70,13 +70,6 @@ const STEPS = [
   },
 ]
 
-const RUSH_RULES = [
-  { days: '14+ days', fee: 'No rush fee', color: 'text-forest-500' },
-  { days: '7–13 days', fee: '+10%', color: 'text-yellow-500' },
-  { days: '3–6 days', fee: '+25%', color: 'text-orange-500' },
-  { days: '0–2 days', fee: '+50%', color: 'text-red-500' },
-]
-
 // ─────────────────────────────────────────────────────────────────────────────
 // PAGE COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
@@ -87,9 +80,9 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <TrustBar />
-      <Features />
       <HowItWorks />
-      <RushPricingCallout />
+      <Features />
+      <MarginCallout />
       <CTASection />
       <Footer />
     </div>
@@ -172,10 +165,9 @@ function Hero() {
         </h1>
 
         {/* Subheadline */}
-        <p className="text-center text-white/60 text-lg sm:text-xl font-sans max-w-2xl mx-auto mb-10 leading-relaxed">
-          Most print shops price on gut feeling, old spreadsheets, or whatever they charged last time.
-          By the time the margin is gone, the job is already running.
-          PressQuote connects to your QuickBooks and shows you the actual profit on every job — before the quote ever goes out.
+        <p className="text-center text-white/60 text-lg sm:text-xl font-sans max-w-xl mx-auto mb-10 leading-relaxed">
+          Pricing on gut feel is costing you margin. PressQuote pulls your real numbers from QuickBooks
+          so you see actual profit on every job — before the quote goes out.
         </p>
 
         {/* CTA */}
@@ -209,7 +201,7 @@ function TrustBar() {
             { value: '< 60s', label: 'Average quote time' },
             { value: '10+', label: 'Product categories' },
             { value: '40%+', label: 'Target margin enforced' },
-            { value: '100%', label: 'Rush fees automatic' },
+            { value: '1-click', label: 'QuickBooks sync' },
           ].map(({ value, label }) => (
             <div key={label}>
               <div className="font-display font-bold text-4xl text-gray-900 mb-1 leading-none">{value}</div>
@@ -313,40 +305,46 @@ function HowItWorks() {
   )
 }
 
-// ─── RUSH PRICING CALLOUT ────────────────────────────────────────────────────
+// ─── MARGIN CALLOUT ──────────────────────────────────────────────────────────
 
-function RushPricingCallout() {
+function MarginCallout() {
   return (
     <section className="py-16 bg-forest-950 border-y border-forest-900">
       <div className="max-w-5xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="max-w-md">
             <p className="section-label text-forest-400 mb-3">
               <span className="w-6 h-px bg-forest-600 inline-block" />
-              Rush Pricing — Automatic
+              Full Profit Visibility
             </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">
-              Rush fees enforced every time.
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+              See exactly what you make
               <br />
-              No exceptions.
+              on every job.
             </h2>
-            <p className="text-white/50 font-sans max-w-md">
-              PressQuote calculates the days until the due date and applies the correct surcharge
-              automatically. Your team never has to remember.
+            <p className="text-white/50 font-sans leading-relaxed">
+              Every quote shows a full cost breakdown — materials, labor, overhead, and your actual
+              margin — pulled straight from your QuickBooks data. No estimates, no guesswork.
             </p>
           </div>
 
-          <div className="w-full md:w-auto md:min-w-[260px] bg-white/5 border border-white/10 rounded-lg p-6">
-            <div className="space-y-3">
-              {RUSH_RULES.map(({ days, fee, color }) => (
-                <div
-                  key={days}
-                  className="flex items-center justify-between py-2 border-b border-white/5 last:border-0"
-                >
-                  <span className="text-white/60 text-sm font-sans">{days} until due</span>
-                  <span className={`font-display font-bold text-sm ${color}`}>{fee}</span>
-                </div>
-              ))}
+          {/* Mock breakdown card */}
+          <div className="w-full md:w-auto md:min-w-[300px] bg-white/5 border border-white/10 rounded-xl p-6 space-y-3">
+            <p className="text-white/40 text-xs font-sans uppercase tracking-widest mb-4">Sample job breakdown</p>
+            {[
+              { label: 'Materials', value: '$48.00', muted: true },
+              { label: 'Labor', value: '$35.00', muted: true },
+              { label: 'Overhead', value: '$18.00', muted: true },
+              { label: 'Quote Price', value: '$142.00', muted: false },
+            ].map(({ label, value, muted }) => (
+              <div key={label} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                <span className={`text-sm font-sans ${muted ? 'text-white/50' : 'text-white font-semibold'}`}>{label}</span>
+                <span className={`text-sm font-sans ${muted ? 'text-white/50' : 'text-white font-semibold'}`}>{value}</span>
+              </div>
+            ))}
+            <div className="flex items-center justify-between pt-3">
+              <span className="text-forest-400 text-sm font-sans font-semibold">Your margin</span>
+              <span className="text-forest-400 text-lg font-bold">29%</span>
             </div>
           </div>
         </div>
