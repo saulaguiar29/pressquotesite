@@ -199,8 +199,8 @@ function TrustBar() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { value: '< 60s', label: 'Average quote time' },
-            { value: '10+', label: 'Product categories' },
-            { value: '40%+', label: 'Target margin enforced' },
+            { value: 'Zero', label: 'Spreadsheets needed' },
+            { value: 'Every job', label: 'Margin visible upfront' },
             { value: '1-click', label: 'QuickBooks sync' },
           ].map(({ value, label }) => (
             <div key={label}>
