@@ -40,6 +40,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
+      <SoundFamiliar />
       <HowItWorks />
       <CTASection />
       <Footer />
@@ -121,10 +122,7 @@ function Hero() {
 
         {/* Subheadline */}
         <p className="text-center text-white/60 text-lg sm:text-xl font-sans max-w-2xl mx-auto mb-10 leading-relaxed">
-          Most print shops price jobs by feel. You do the work, send the
-          invoice, and find out later if you actually made money. PressQuote
-          connects to your QuickBooks and shows you the real profit on every job
-          — before the customer ever sees the price.
+          Most custom job businesses find out if they made money after the job is done. PressQuote fixes that.
         </p>
 
         {/* CTA */}
@@ -152,6 +150,36 @@ function Hero() {
       </div>
     </section>
   );
+}
+
+// ─── SOUND FAMILIAR ──────────────────────────────────────────────────────────
+
+function SoundFamiliar() {
+  const painPoints = [
+    "You quoted a great price to win the job — and lost money doing it.",
+    "Your biggest job last month ended up being your least profitable.",
+    "A rush order came in and you guessed on the price — and regretted it.",
+    "You finished a job and realized you forgot to charge for half the materials.",
+    "You've been using the same prices for years and have no idea if they still make sense.",
+  ]
+
+  return (
+    <section className="py-20 bg-stone-50 border-t border-stone-100">
+      <div className="max-w-2xl mx-auto px-6">
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-10 text-center">
+          Sound familiar?
+        </h2>
+        <ul className="space-y-4">
+          {painPoints.map((point) => (
+            <li key={point} className="flex items-start gap-4">
+              <span className="text-xl leading-none mt-0.5">❌</span>
+              <p className="text-gray-700 font-sans text-lg leading-snug">{point}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
 }
 
 // ─── HOW IT WORKS ────────────────────────────────────────────────────────────
