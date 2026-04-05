@@ -1,15 +1,15 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 
-// Until you verify a custom domain in Resend, all mail must come from this address.
-// Once you verify pressquote.com (or any domain you own), update this to e.g.:
-//   'PressQuote <waitlist@pressquote.com>'
-const FROM = 'PressQuote <onboarding@resend.dev>'
+const FROM = 'PressQuote <waitlist@pressquote.net>'
 
 export async function POST(request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL
+    const NOTIFY_EMAILS = [
+      process.env.NOTIFY_EMAIL,
+      process.env.NOTIFY_EMAIL_2,
+    ].filter(Boolean)
     const { email, businessName } = await request.json()
 
     if (!email) {
@@ -17,10 +17,10 @@ export async function POST(request) {
     }
 
     // Notify yourself when someone joins
-    if (NOTIFY_EMAIL) {
+    if (NOTIFY_EMAILS.length > 0) {
       const { error } = await resend.emails.send({
         from: FROM,
-        to: NOTIFY_EMAIL,
+        to: NOTIFY_EMAILS,
         subject: `New waitlist signup: ${businessName || email}`,
         html: `
           <div style="font-family: Inter, system-ui, sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 24px; color: #111;">
