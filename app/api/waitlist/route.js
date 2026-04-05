@@ -1,22 +1,43 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
-// The email address that receives a notification every time someone joins
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL
+// Until you verify a custom domain in Resend, all mail must come from this address.
+// Once you verify pressquote.com (or any domain you own), update this to e.g.:
+//   'PressQuote <waitlist@pressquote.com>'
+const FROM = 'PressQuote <onboarding@resend.dev>'
 
 export async function POST(request) {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL
     const { email, businessName } = await request.json()
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 })
     }
 
-    // Send confirmation to the person who signed up
-    await resend.emails.send({
-      from: 'PressQuote <waitlist@pressquote.com>',
+    // Notify yourself when someone joins
+    if (NOTIFY_EMAIL) {
+      const { error } = await resend.emails.send({
+        from: FROM,
+        to: NOTIFY_EMAIL,
+        subject: `New waitlist signup: ${businessName || email}`,
+        html: `
+          <div style="font-family: Inter, system-ui, sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 24px; color: #111;">
+            <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">New waitlist signup</h2>
+            <p style="font-size: 15px; color: #333;"><strong>Email:</strong> ${email}</p>
+            ${businessName ? `<p style="font-size: 15px; color: #333;"><strong>Business:</strong> ${businessName}</p>` : ''}
+          </div>
+        `,
+      })
+      if (error) console.error('Notification email failed:', error)
+    }
+
+    // Send confirmation to the person who signed up.
+    // NOTE: with onboarding@resend.dev you can only send to your own Resend account email.
+    // Verify a domain at resend.com/domains to enable sending to any address.
+    const { error } = await resend.emails.send({
+      from: FROM,
       to: email,
       subject: "You're on the PressQuote waitlist",
       html: `
@@ -33,22 +54,7 @@ export async function POST(request) {
         </div>
       `,
     })
-
-    // Notify yourself when someone joins
-    if (NOTIFY_EMAIL) {
-      await resend.emails.send({
-        from: 'PressQuote <waitlist@pressquote.com>',
-        to: NOTIFY_EMAIL,
-        subject: `New waitlist signup: ${businessName || email}`,
-        html: `
-          <div style="font-family: Inter, system-ui, sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 24px; color: #111;">
-            <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">New waitlist signup</h2>
-            <p style="font-size: 15px; color: #333;"><strong>Email:</strong> ${email}</p>
-            ${businessName ? `<p style="font-size: 15px; color: #333;"><strong>Business:</strong> ${businessName}</p>` : ''}
-          </div>
-        `,
-      })
-    }
+    if (error) console.error('Confirmation email failed:', error)
 
     return NextResponse.json({ success: true })
   } catch (err) {
