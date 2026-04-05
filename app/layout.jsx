@@ -11,7 +11,7 @@ export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
   keywords:
-    "print shop quoting software, print shop management software, printing business software, print quote generator, print shop pricing tool",
+    "PressQuote, print shop management software, printing business software, print quote generator, print shop pricing tool",
   authors: [{ name: "PressQuote" }],
   openGraph: {
     title: TITLE,
