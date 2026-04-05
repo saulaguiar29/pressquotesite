@@ -11,16 +11,32 @@ export default function WaitlistForm({ dark = false }) {
     if (!email) return
     setStatus('loading')
 
-    // TODO: Replace with your actual email capture endpoint
-    // Options: Mailchimp, ConvertKit, Resend, or a simple /api/waitlist route
-    // Example with a Next.js API route:
-    // await fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email, businessName }) })
+    const res = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, businessName }),
+    })
 
-    // Simulated success for now
-    await new Promise((r) => setTimeout(r, 800))
+    if (!res.ok) {
+      setStatus('error')
+      return
+    }
+
     setStatus('success')
     setEmail('')
     setBusinessName('')
+  }
+
+  if (status === 'error') {
+    return (
+      <div className={`flex items-center gap-3 px-5 py-3.5 rounded-xl border ${
+        dark
+          ? 'bg-red-900/30 border-red-700/50 text-red-300'
+          : 'bg-red-50 border-red-200 text-red-700'
+      }`}>
+        <span className="font-sans text-sm">Something went wrong — please try again or email us directly.</span>
+      </div>
+    )
   }
 
   if (status === 'success') {
