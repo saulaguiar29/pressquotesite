@@ -1,7 +1,7 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 
-const FROM = 'PressQuote <waitlist@pressquote.net>'
+const FROM = 'PressQuote <hello@pressquote.net>'
 
 export async function POST(request) {
   try {
