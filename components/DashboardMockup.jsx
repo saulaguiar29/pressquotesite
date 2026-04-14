@@ -69,7 +69,7 @@ export default function DashboardMockup() {
               ].map(({ label, value, sub }) => (
                 <div key={label} className="bg-white/5 border border-white/5 rounded-lg p-2">
                   <div className="text-white/40 text-[9px] font-sans uppercase tracking-wider mb-1">{label}</div>
-                  <div className="text-white text-sm font-bold font-display">{value}</div>
+                  <div className="text-white text-sm font-bold font-mono">{value}</div>
                   <div className="text-white/30 text-[9px] font-sans">{sub}</div>
                 </div>
               ))}

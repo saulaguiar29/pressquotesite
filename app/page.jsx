@@ -214,7 +214,7 @@ function HowItWorks() {
 
               {/* Number */}
               <div className="shrink-0">
-                <div className="w-12 h-12 rounded-lg bg-forest-600 text-white font-display font-bold text-lg flex items-center justify-center shadow-lg shadow-forest-600/30">
+                <div className="w-12 h-12 rounded-lg bg-forest-600 text-white font-mono font-bold text-lg flex items-center justify-center shadow-lg shadow-forest-600/30">
                   {number}
                 </div>
               </div>
