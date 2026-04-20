@@ -38,28 +38,6 @@ pressquotesite/
 └── postcss.config.js
 ```
 
----
-
-## Local Development
-
-```bash
-npm install
-npm run dev
-# → http://localhost:3000
-```
-
-Create a `.env.local` file in the root:
-
-```
-RESEND_API_KEY=your_resend_api_key
-NOTIFY_EMAIL=you@example.com
-NOTIFY_EMAIL_2=optional_second@example.com
-```
-
----
-
 ## Deployment
 
 Hosted on Vercel. Every push to `main` auto-deploys.
-
-Environment variables (`RESEND_API_KEY`, `NOTIFY_EMAIL`, `NOTIFY_EMAIL_2`) must be set in the Vercel dashboard under **Settings → Environment Variables**.
